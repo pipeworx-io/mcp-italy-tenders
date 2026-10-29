@@ -3,7 +3,7 @@
   "name": "io.github.pipeworx-io/italy-tenders",
   "title": "Italy Tenders",
   "description": "Italy public procurement MCP — ANAC (Autorità Nazionale Anticorruzione) national tender/contract…",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "websiteUrl": "https://pipeworx.io/packs/italy-tenders",
   "repository": {
     "url": "https://github.com/pipeworx-io/mcp-italy-tenders",

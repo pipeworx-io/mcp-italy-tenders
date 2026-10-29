@@ -1,0 +1,58 @@
+[
+  {
+    "name": "it_tender_search",
+    "description": "Search ITALIAN public-sector tenders and contract notices from ANAC (Autorità Nazionale Anticorruzione), the national anti-corruption authority that runs Italy's public-procurement notice register (the \"cig\" dataset — one notice per CIG, Codice Identificativo Gara). ANAC exposes no live search of its own, so this answers from a locally refreshed recent-window copy (see data_as_of and the window fields in the response). Filter by free-text keyword (matched against the Italian title and CPV category description), CPV code or prefix (e.g. \"45\" for construction, \"72000000\" for IT services), buyer name substring (Italian spelling, e.g. \"Comune di Milano\", \"ASL\", \"Regione\"), Italian province code, and a publish-date range. Returns compact shaped notices: CIG, title, buyer, province/region, contract type, amount (EUR), status, CPV, publish date, offer deadline, and outcome if communicated. Call it_tender_detail with a CIG for the full record.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "Keyword(s), case-insensitive, matched against the Italian notice title and CPV category description, e.g. \"ospedale\", \"pulizia\", \"software\", \"manutenzione strade\"."
+        },
+        "cpv": {
+          "type": "string",
+          "description": "CPV classification code or numeric prefix, e.g. \"45\" (construction works), \"72000000\" (IT services)."
+        },
+        "buyer": {
+          "type": "string",
+          "description": "Contracting-authority (buyer) name, partial match, Italian spelling, e.g. \"Comune di Roma\", \"ASL Napoli\", \"Ministero\"."
+        },
+        "province": {
+          "type": "string",
+          "description": "Italian province name as ANAC records it, e.g. \"MILANO\", \"ROMA\", \"NAPOLI\" (case-insensitive exact match)."
+        },
+        "date_from": {
+          "type": "string",
+          "description": "Earliest PUBLISH date, YYYY-MM-DD. Defaults to 90 days before date_to."
+        },
+        "date_to": {
+          "type": "string",
+          "description": "Latest PUBLISH date, YYYY-MM-DD. Defaults to the newest date in the loaded window (see window_to in any response), which can trail today by months because ANAC publishes monthly bulk files."
+        },
+        "limit": {
+          "type": [
+            "number",
+            "string"
+          ],
+          "description": "Max notices to return (default 20, max 100). Newest-first."
+        }
+      }
+    }
+  },
+  {
+    "name": "it_tender_detail",
+    "description": "Fetch one ITALIAN public-procurement notice by its CIG (Codice Identificativo Gara — the unique id ANAC assigns every public contract above a minimal threshold) from the ANAC \"cig\" register. Returns the full record: title, buyer (with tax code), province/region, contract type, amount, lot count, sector, procedure type, realization mode, CPV code/description, publish date, offer deadline, and outcome (aggiudicata/revocata/etc.) with its communication date when ANAC has recorded one. Use after it_tender_search returns a CIG.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "cig": {
+          "type": "string",
+          "description": "The notice's CIG, e.g. \"B82436559F\". Returned by it_tender_search."
+        }
+      },
+      "required": [
+        "cig"
+      ]
+    }
+  }
+]
