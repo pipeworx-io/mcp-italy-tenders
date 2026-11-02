@@ -1,6 +1,6 @@
 {
   "name": "@pipeworx/mcp-italy-tenders",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Italy public procurement MCP — ANAC (Autorità Nazionale Anticorruzione) national tender/contract register.",
   "type": "module",
   "main": "lib/index.js",
@@ -27,7 +27,7 @@
     "mode": "gateway",
     "slug": "italy-tenders",
     "gatewaySlug": "italy-tenders",
-    "sourceHash": "v1-006e1378084c3f480f3888658b837f7506b1715ffc4ca27ce282f1d95b4f3571",
-    "sourceCommit": "4844029e402d6bd2fe735add8abf6d46735f8ed5"
+    "sourceHash": "v1-cece107dbf34e23f1832afd25bf7b5a91e45015d1b0b8e9a15394a08ba78de15",
+    "sourceCommit": "236b0a46d91f343fe094da9f499c378e88f78312"
   }
 }
